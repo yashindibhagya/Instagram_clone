@@ -1,45 +1,130 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
+import React from "react";
+import { View, TouchableOpacity, StyleSheet } from "react-native";
+import { Tabs } from "expo-router";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import Feather from "@expo/vector-icons/Feather";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+export default function _layout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+        tabBarShowLabel: false, // Hide text labels
+        tabBarStyle: styles.tabBar,
+        tabBarActiveTintColor: "black", // Active icon color
+        tabBarInactiveTintColor: "gray", // Inactive icon color
+        tabBarHideOnKeyboard: true,
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          tabBarIcon: ({ color, size, focused }) => (
+            <View style={[styles.iconContainer, focused && styles.activeTab]}>
+              <FontAwesome name="home" size={size} color={color} />
+            </View>
+          ),
         }}
       />
+
       <Tabs.Screen
-        name="explore"
+        name="search"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          tabBarIcon: ({ color, size, focused }) => (
+            <View style={[styles.iconContainer, focused && styles.activeTab]}>
+              <Feather name="type" size={size} color={color} />
+            </View>
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="add"
+        options={{
+          tabBarIcon: ({ color, size, focused }) => (
+            <View style={[styles.iconContainer, focused && styles.activeTab]}>
+              {focused && <View style={styles.activeLine} />}
+              <FontAwesome name="home" size={size} color={color} />
+            </View>
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="reel"
+        options={{
+          tabBarIcon: ({ color, size, focused }) => (
+            <View style={[styles.iconContainer, focused && styles.activeTab]}>
+              <Ionicons name="globe-outline" size={size} color={color} />
+            </View>
+          ),
+        }}
+      />
+
+      <Tabs.Screen
+        name="profile"
+        options={{
+          tabBarIcon: ({ color, size, focused }) => (
+            <View style={[styles.iconContainer, focused && styles.activeTab]}>
+              <FontAwesome name="user-circle-o" size={size} color={color} />
+            </View>
+          ),
         }}
       />
     </Tabs>
   );
 }
+
+const styles = StyleSheet.create({
+  tabBar: {
+    position: "absolute",
+    //bottom: 20,
+    left: 20,
+    right: 20,
+    elevation: 5,
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    height: 60,
+    //shadowColor: "#000",
+    //shadowOffset: { width: 0, height: 10 },
+    //shadowOpacity: 0.1,
+    //shadowRadius: 5,
+    boxShadow: "0px 10px 5px rgb(0, 0, 0)", // CSS equivalent
+  },
+  iconContainer: {
+    alignItems: "center",
+    justifyContent: "center",
+    top: 9,
+  },
+  activeTab: {
+    position: "relative",
+  },
+  activeLine: {
+    position: "absolute",
+    top: -16, // Adjust height of the line
+    width: 25,
+    height: 4,
+    backgroundColor: "#074D4E", // Match the active color
+    borderRadius: 2,
+  },
+  middleButton: {
+    width: 45,
+    height: 45,
+    borderRadius: 35,
+    backgroundColor: "#074D4E", // Dark green
+    justifyContent: "center",
+    alignItems: "center",
+    top: -20, // Floating effect
+    shadowColor: "#000",
+    //shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
+    alignSelf: "center",
+  },
+  middleButtonActive: {
+    backgroundColor: "#056363", // Slightly different shade when active
+  },
+});
