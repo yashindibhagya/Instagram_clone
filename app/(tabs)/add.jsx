@@ -4,7 +4,7 @@ import React from "react";
 export default function AddPost() {
   return (
     <View>
-      <Text>AddPost</Text>
+      <Text>Add</Text>
     </View>
   );
 }
