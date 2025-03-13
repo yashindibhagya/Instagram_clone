@@ -10,17 +10,26 @@ export default function _layout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
+        //headerShown: false,
         tabBarShowLabel: false, // Hide text labels
         tabBarStyle: styles.tabBar,
         tabBarActiveTintColor: "black", // Active icon color
         tabBarInactiveTintColor: "gray", // Inactive icon color
         tabBarHideOnKeyboard: true,
+        headerTitleAlign: "center",
+        headerStyle: {
+          height: 60, // Reduce header height
+        },
+        headerTitleStyle: {
+          fontSize: 16, // Smaller font size
+          fontWeight: "bold", // Optional: Adjust weight
+        },
       }}
     >
       <Tabs.Screen
         name="home"
         options={{
+          headerTitle: "For You",
           tabBarIcon: ({ color, size, focused }) => (
             <View style={[styles.iconContainer, focused && styles.activeTab]}>
               <FontAwesome name="home" size={size} color={color} />
@@ -32,6 +41,7 @@ export default function _layout() {
       <Tabs.Screen
         name="search"
         options={{
+          headerTitle: "For You",
           tabBarIcon: ({ color, size, focused }) => (
             <View style={[styles.iconContainer, focused && styles.activeTab]}>
               <Feather name="type" size={size} color={color} />
@@ -43,6 +53,7 @@ export default function _layout() {
       <Tabs.Screen
         name="add"
         options={{
+          headerTitle: "For You",
           tabBarIcon: ({ color, size, focused }) => (
             <View style={[styles.iconContainer, focused && styles.activeTab]}>
               {focused && <View style={styles.activeLine} />}
@@ -66,6 +77,7 @@ export default function _layout() {
       <Tabs.Screen
         name="profile"
         options={{
+          headerTitle: "Profile",
           tabBarIcon: ({ color, size, focused }) => (
             <View style={[styles.iconContainer, focused && styles.activeTab]}>
               <FontAwesome name="user-circle-o" size={size} color={color} />
