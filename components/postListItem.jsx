@@ -1,23 +1,21 @@
 import { View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
-import posts from "../assets/data/posts.json";
+//import posts from "../assets/data/posts.json";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
 import AntDesign from "@expo/vector-icons/AntDesign";
 
-const post1 = posts[0];
-
-export default function PostListItem() {
+export default function PostListItem({ post }) {
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.userView}>
-        <Image source={{ uri: post1.user.image_url }} style={styles.user} />
-        <Text style={styles.username}>{post1.user.username}</Text>
+        <Image source={{ uri: post.user.image_url }} style={styles.user} />
+        <Text style={styles.username}>{post.user.username}</Text>
       </View>
 
       {/* Post Image */}
-      <Image source={{ uri: post1.image_url }} style={styles.image} />
+      <Image source={{ uri: post.image_url }} style={styles.image} />
 
       {/* Icons */}
       <View style={styles.iconContainer}>
@@ -37,7 +35,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     paddingVertical: 10, // Adds some spacing around the post
-    marginBottom: 10, // Space between posts
+    //marginBottom: 5, // Space between posts
   },
   image: {
     width: "100%",

@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, FlatList } from "react-native";
 import React from "react";
 import posts from "../../assets/data/posts.json";
 import PostListItem from "@/components/postListItem";
@@ -8,11 +8,14 @@ export default function Home() {
   //console.log(post1);
 
   return (
-    <View style={styles.container}>
-      <PostListItem />
-      <PostListItem />
-      <PostListItem />
-    </View>
+    <FlatList
+      data={posts}
+      renderItem={({ item }) => <PostListItem post={item} />}
+      contentContainerStyle={{ paddingBottom: 40 }} // Extra space for the last item
+      ListFooterComponent={<View style={{ height: 20 }} />} // Ensures last item is visible
+      style={styles.container}
+      showsVerticalScrollIndicator={false}
+    />
   );
 }
 
