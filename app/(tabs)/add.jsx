@@ -1,4 +1,11 @@
-import { View, Text, Image, StyleSheet, TextInput } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TextInput,
+  Pressable,
+} from "react-native";
 import React, { useState } from "react";
 
 export default function AddPost() {
@@ -27,6 +34,11 @@ export default function AddPost() {
         />
       </View>
       {/* Button */}
+      <View style={styles.buttonView}>
+        <Pressable style={styles.button}>
+          <Text style={styles.buttonText}>Share</Text>
+        </Pressable>
+      </View>
     </View>
   );
 }
@@ -35,7 +47,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 10,
     alignItems: "center",
-    flexDirection: 1,
+    //flexDirection: 1,
+    flex: 1,
   },
   textButton: {
     color: "blue",
@@ -44,5 +57,21 @@ const styles = StyleSheet.create({
   },
   placeholder: {
     padding: 10,
+    marginRight: 230,
+  },
+  button: {
+    backgroundColor: "blue",
+    width: "100%",
+    padding: 10,
+    alignItems: "center",
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: "#fff",
+    fontWeight: "500",
+  },
+  buttonView: {
+    marginTop: 350,
+    //marginTop: "auto",
   },
 });
