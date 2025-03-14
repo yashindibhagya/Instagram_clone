@@ -7,12 +7,18 @@ import {
   Pressable,
   Button,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 
 export default function AddPost() {
   const [image, setImage] = useState<string | null>(null);
   const [caption, setCaption] = useState("");
+
+  useEffect(() =>{
+    if(!image){
+      pickImage();
+    }
+  },[image]);
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -35,9 +41,7 @@ export default function AddPost() {
         <Image source={{ uri: image }} style={styles.image} />
       ) : (
         <Image
-          source={{
-            uri: "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
-          }}
+          source={{uri: image,}}
           style={styles.image}
         />
       )}
@@ -54,7 +58,7 @@ export default function AddPost() {
         value={caption}
         onChangeText={setCaption}
         placeholder="Enter caption..."
-        style={styles.textInput}
+        //style={styles.textInput}
       />
 
       {/* Share Button */}
@@ -76,6 +80,7 @@ const styles = StyleSheet.create({
     height: 250,
     borderRadius: 8,
     marginBottom: 10,
+    backgroundColor: 'gray'
   },
   textButton: {
     color: "#fff",
