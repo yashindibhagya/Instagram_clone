@@ -22,13 +22,11 @@ export default function AddPost() {
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ['images', 'videos'],      
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
     });
-
-    console.log(result);
 
     if (!result.canceled) {
       setImage(result.assets[0].uri);
@@ -40,10 +38,9 @@ export default function AddPost() {
       {image ? (
         <Image source={{ uri: image }} style={styles.image} />
       ) : (
-        <Image
-          source={{uri: image,}}
-          style={styles.image}
-        />
+        <View style={styles.imagePlaceholder}>
+          <Text style={styles.placeholderText}>No Image Selected</Text>
+        </View>
       )}
 
       {/* Button for Picking Image */}
@@ -101,6 +98,18 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     fontSize: 16,
+  },
+  imagePlaceholder: {
+    width: 200,
+    height: 250,
+    backgroundColor: "lightgray",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  placeholderText: {
+    color: "#666",
   },
 });
 
