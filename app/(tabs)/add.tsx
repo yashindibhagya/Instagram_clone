@@ -11,12 +11,12 @@ import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 
 export default function AddPost() {
+  const [image, setImage] = useState<string | null>(null);
   const [caption, setCaption] = useState("");
-  const [image, setImage] = (useState < string) | (null > null); // Fixed state declaration
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images, // Fix mediaTypes
+    const result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
@@ -31,7 +31,6 @@ export default function AddPost() {
 
   return (
     <View style={styles.container}>
-      {/* Image Picker */}
       {image ? (
         <Image source={{ uri: image }} style={styles.image} />
       ) : (
@@ -44,58 +43,59 @@ export default function AddPost() {
       )}
 
       {/* Button for Picking Image */}
-      <Button title="Pick an image" onPress={pickImage} />
+      <View style={styles.buttonView}>
+        <Pressable style={styles.button} onPress={pickImage}>
+          <Text style={styles.buttonText}>Pick an Image</Text>
+        </Pressable>
+      </View>
 
       {/* Caption Input */}
       <TextInput
         value={caption}
         onChangeText={setCaption}
-        placeholder="What's on your mind?"
-        style={styles.input}
+        placeholder="Enter caption..."
+        style={styles.textInput}
       />
 
       {/* Share Button */}
-      <View style={styles.buttonView}>
-        <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Share</Text>
-        </Pressable>
-      </View>
+      <Pressable style={styles.button}>
+        <Text style={styles.buttonText}>Share</Text>
+      </Pressable>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    padding: 20,
     alignItems: "center",
     flex: 1,
   },
   image: {
     width: 200,
     height: 250,
-    borderRadius: 10,
-    backgroundColor: "#ccc",
-  },
-  input: {
-    padding: 10,
-    marginTop: 10,
-    width: "90%",
-    borderWidth: 1,
-    borderColor: "#ccc",
     borderRadius: 8,
+    marginBottom: 10,
+  },
+  textButton: {
+    color: "#fff",
+    padding: 10,
+    textAlign: "center",
   },
   buttonView: {
-    marginTop: 20,
-    width: "90%",
+    width: "100%",
+    marginVertical: 10,
   },
   button: {
     backgroundColor: "blue",
-    padding: 10,
+    padding: 12,
     alignItems: "center",
     borderRadius: 8,
   },
   buttonText: {
     color: "#fff",
-    fontWeight: "500",
+    fontWeight: "bold",
+    fontSize: 16,
   },
 });
+
