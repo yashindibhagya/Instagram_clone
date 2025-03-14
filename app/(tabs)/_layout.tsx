@@ -53,7 +53,7 @@ export default function _layout() {
       <Tabs.Screen
         name="add"
         options={{
-          headerTitle: "For You",
+          headerTitle: "Create Post",
           tabBarIcon: ({ color, size, focused }) => (
             <View style={[styles.iconContainer, focused && styles.activeTab]}>
               {focused && <View style={styles.activeLine} />}
