@@ -50,7 +50,10 @@ export default function Profile() {
         style={styles.textBox}
       />
 
-      <Button name={"Save"} />
+      <View style={styles.viewButton}>
+        <Button name={"Save"} />
+        <Button name={"Sign Out"} />
+      </View>
 
     </View>
   );
@@ -98,8 +101,13 @@ const styles = StyleSheet.create({
   textBox: {
     borderBottomWidth: 1,
     borderColor: 'gray',
-    width: '80%'
-
+    width: '90%'
+  },
+  viewButton: {
+    //gap: 3,
+    marginTop: 'auto',
+    marginBottom: 50,
+    width: '90%'
   }
 });
 
