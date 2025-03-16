@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet } from "react-native";
+import { View, Text, Image, StyleSheet, useWindowDimensions } from "react-native";
 import React from "react";
 //import posts from "../assets/data/posts.json";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -7,17 +7,31 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import { AdvancedImage } from 'cloudinary-react-native';
 import { Cloudinary } from "@cloudinary/url-gen";
 
-// Create a Cloudinary instance and set your cloud name.
-const cld = new Cloudinary({
-  cloud: {
-    cloudName: 'demo'
-  }
-});
+// Import required actions and qualifiers.
+import { thumbnail } from "@cloudinary/url-gen/actions/resize";
+import { byRadius } from "@cloudinary/url-gen/actions/roundCorners";
+import { focusOn } from "@cloudinary/url-gen/qualifiers/gravity";
+import { FocusOn } from "@cloudinary/url-gen/qualifiers/focusOn";
+import { cld } from "./lib/cloudinary";
+
+
 
 export default function PostListItem({ post }) {
 
   // cld.image returns a CloudinaryImage with the configuration set.
-  const myImage = cld.image('sample');
+  const myImage = cld.image(post.image);
+  //const myImage = cld.image('sample');
+
+  const { width } = useWindowDimensions();
+
+
+  // Apply the transformation.
+  myImage
+    .resize(thumbnail().width(width).height(width))  // Crop the image, focusing on the face.
+  //  .roundCorners(byRadius(20));    // Round the corners.
+
+
+
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -29,7 +43,6 @@ export default function PostListItem({ post }) {
       {/* Post Image */}
 
       <AdvancedImage cldImg={myImage} style={styles.image} />
-      <Image source={{ uri: post.image_url }} style={styles.image} />
 
       {/* Icons */}
       <View style={styles.iconContainer}>

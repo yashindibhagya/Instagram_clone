@@ -1,12 +1,4 @@
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TextInput,
-  Pressable,
-
-} from "react-native";
+import { View, Text, Image, StyleSheet, TextInput, Pressable } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import Button from "@/components/Button";
@@ -23,7 +15,7 @@ export default function AddPost() {
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ['images', 'videos'],
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
@@ -56,15 +48,14 @@ export default function AddPost() {
         value={caption}
         onChangeText={setCaption}
         placeholder="Enter caption..."
-      //style={styles.textInput}
+        style={styles.textInput}
       />
 
       {/* Share Button */}
-      <Button name={"Share"}
-      />
+      <Button name="Share" />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -78,6 +69,14 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginBottom: 10,
     backgroundColor: 'gray'
+  },
+  textInput: {
+    width: "100%",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 8,
+    marginVertical: 10,
   },
   textButton: {
     color: "#fff",
@@ -112,4 +111,3 @@ const styles = StyleSheet.create({
     color: "#666",
   },
 });
-

@@ -43,7 +43,8 @@ export default function _layout() {
           headerTitle: "Create Post",
           tabBarIcon: ({ color, size, focused }) => (
             <View style={[styles.iconContainer, focused && styles.activeTab]}>
-              <MaterialIcons name="add-box" size={size} color={color} />            </View>
+              <MaterialIcons name="add-box" size={size} color={color} />
+            </View>
           ),
         }}
       />
