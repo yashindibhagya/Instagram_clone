@@ -39,36 +39,12 @@ export default function _layout() {
       />
 
       <Tabs.Screen
-        name="search"
-        options={{
-          headerTitle: "For You",
-          tabBarIcon: ({ color, size, focused }) => (
-            <View style={[styles.iconContainer, focused && styles.activeTab]}>
-              <Feather name="type" size={size} color={color} />
-            </View>
-          ),
-        }}
-      />
-
-      <Tabs.Screen
         name="add"
         options={{
           headerTitle: "Create Post",
           tabBarIcon: ({ color, size, focused }) => (
             <View style={[styles.iconContainer, focused && styles.activeTab]}>
-              {focused && <View style={styles.activeLine} />}
               <FontAwesome name="home" size={size} color={color} />
-            </View>
-          ),
-        }}
-      />
-
-      <Tabs.Screen
-        name="reel"
-        options={{
-          tabBarIcon: ({ color, size, focused }) => (
-            <View style={[styles.iconContainer, focused && styles.activeTab]}>
-              <Ionicons name="globe-outline" size={size} color={color} />
             </View>
           ),
         }}

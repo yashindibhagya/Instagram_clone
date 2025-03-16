@@ -3,29 +3,22 @@ import {
   Text,
   Image,
   StyleSheet,
-  TextInput,
   Pressable,
-
+  TextInput,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import Button from "@/components/Button";
 
-export default function AddPost() {
+export default function Profile() {
   const [image, setImage] = useState<string | null>(null);
-  const [caption, setCaption] = useState("");
-
-  useEffect(() => {
-    if (!image) {
-      pickImage();
-    }
-  }, [image]);
+  const [username, setUsername] = useState('')
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ['images', 'videos'],
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [1, 1],
       quality: 1,
     });
 
@@ -44,28 +37,24 @@ export default function AddPost() {
         </View>
       )}
 
-      {/* Button for Picking Image */}
       <View style={styles.buttonView}>
         <Pressable style={styles.button} onPress={pickImage}>
           <Text style={styles.buttonText}>Pick an Image</Text>
         </Pressable>
       </View>
 
-      {/* Caption Input */}
       <TextInput
-        value={caption}
-        onChangeText={setCaption}
-        placeholder="Enter caption..."
-      //style={styles.textInput}
+        placeholder="Username"
+        value={username}
+        onChangeText={setUsername}
+        style={styles.textBox}
       />
 
-      {/* Share Button */}
-      <Button name={"Share"}
-      />
+      <Button name={"Save"} />
+
     </View>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {
@@ -75,42 +64,43 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 200,
-    height: 250,
-    borderRadius: 8,
+    height: 200,
+    borderRadius: 9999,
     marginBottom: 10,
     backgroundColor: 'gray'
   },
-  textButton: {
-    color: "#fff",
-    padding: 10,
-    textAlign: "center",
+  imagePlaceholder: {
+    width: 200,
+    height: 200,
+    backgroundColor: "lightgray",
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 9999,
+    marginBottom: 10,
+  },
+  placeholderText: {
+    color: "#666",
   },
   buttonView: {
     width: "100%",
     marginVertical: 10,
   },
   button: {
-    backgroundColor: "blue",
     padding: 12,
     alignItems: "center",
     borderRadius: 8,
   },
   buttonText: {
-    color: "#fff",
+    color: "blue",
     fontWeight: "bold",
     fontSize: 16,
   },
-  imagePlaceholder: {
-    width: 200,
-    height: 250,
-    backgroundColor: "lightgray",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 8,
-    marginBottom: 10,
-  },
-  placeholderText: {
-    color: "#666",
-  },
+  textBox: {
+    borderBottomWidth: 1,
+    borderColor: 'gray',
+    width: '80%'
+
+  }
 });
+
 
