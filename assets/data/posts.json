@@ -1,20 +1,20 @@
 [
   {
     "id": "1",
-    "image": "samples/landscapes/beach-boat",
-    "image_url": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/1.jpg",
+    "image": "home/download_mkr25w",
+    "image_url": "https://res.cloudinary.com/dttt8qeh6/image/upload/v1742150277/download_mkr25w.jpg",
     "caption": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic repellendus unde blanditiis. Eos fugiat dolorem ea fugit aut sapiente corrupti autem dolores deleniti architecto, omnis, amet unde dignissimos quam minima?",
     "user": {
       "id": "u1",
       "avatar_url": "samples/people/boy-snow-hoodie",
-      "image_url": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/avatars/2.jpg",
+      "image_url": "https://res.cloudinary.com/dttt8qeh6/image/upload/v1742150277/download_mkr25w.jpg",
       "username": "vadimnotjust"
     }
   },
   {
     "id": "2",
     "image": "samples/woman-on-a-football-field",
-    "image_url": "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/images/2.jpg",
+    "image_url": "https://res.cloudinary.com/dttt8qeh6/image/upload/v1742150277/download_mkr25w.jpg",
     "caption": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic repellendus unde blanditiis. Eos fugiat dolorem ea fugit aut sapiente corrupti autem dolores deleniti architecto, omnis, amet unde dignissimos quam minima?",
     "user": {
       "id": "u1",
