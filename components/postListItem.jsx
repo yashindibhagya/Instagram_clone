@@ -4,8 +4,20 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Feather from "@expo/vector-icons/Feather";
 import AntDesign from "@expo/vector-icons/AntDesign";
+import { AdvancedImage } from 'cloudinary-react-native';
+import { Cloudinary } from "@cloudinary/url-gen";
+
+// Create a Cloudinary instance and set your cloud name.
+const cld = new Cloudinary({
+  cloud: {
+    cloudName: 'demo'
+  }
+});
 
 export default function PostListItem({ post }) {
+
+  // cld.image returns a CloudinaryImage with the configuration set.
+  const myImage = cld.image('sample');
   return (
     <View style={styles.container}>
       {/* Header */}
@@ -15,6 +27,8 @@ export default function PostListItem({ post }) {
       </View>
 
       {/* Post Image */}
+
+      <AdvancedImage cldImg={myImage} style={styles.image} />
       <Image source={{ uri: post.image_url }} style={styles.image} />
 
       {/* Icons */}

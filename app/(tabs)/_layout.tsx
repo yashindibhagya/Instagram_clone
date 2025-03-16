@@ -3,8 +3,7 @@ import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { Tabs } from "expo-router";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Feather from "@expo/vector-icons/Feather";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 
 export default function _layout() {
   return (
@@ -44,8 +43,7 @@ export default function _layout() {
           headerTitle: "Create Post",
           tabBarIcon: ({ color, size, focused }) => (
             <View style={[styles.iconContainer, focused && styles.activeTab]}>
-              <FontAwesome name="home" size={size} color={color} />
-            </View>
+              <MaterialIcons name="add-box" size={size} color={color} />            </View>
           ),
         }}
       />
