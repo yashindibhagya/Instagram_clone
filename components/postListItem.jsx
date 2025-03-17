@@ -12,19 +12,33 @@ import { cld } from "./lib/cloudinary";
 export default function PostListItem({ post }) {
   const { width } = useWindowDimensions();
 
-  // Check if post.image_url exists; if not, use Cloudinary
+  // Determine Post Image URL (Cloudinary or Direct URL)
   const imageUrl = post.image_url
     ? post.image_url
-    : cld.image(post.image).resize(thumbnail().width(width).height(width)).toURL();
+    : post.image
+      ? cld.image(post.image).resize(thumbnail().width(width).height(width)).toURL()
+      : null; // Ensure null safety
 
-  // Debug: Check the final image URL
-  //console.log("Final Image URL:", imageUrl);
+  // Determine Avatar URL (Cloudinary or Direct URL)
+  const avatarUrl = post.user.image_url
+    ? post.user.image_url
+    : post.user.avatar_url
+      ? cld.image(post.user.avatar_url).resize(thumbnail().width(40).height(40)).toURL()
+      : null;
+
+  // Debugging URLs
+  //console.log("Post Image URL:", imageUrl);
+  //console.log("Avatar Image URL:", avatarUrl);
 
   return (
     <View style={styles.container}>
       {/* Header: User Info */}
       <View style={styles.userView}>
-        <Image source={{ uri: post.user.image_url }} style={styles.user} />
+        {avatarUrl ? (
+          <Image source={{ uri: avatarUrl }} style={styles.user} />
+        ) : (
+          <Text style={{ color: "red" }}>No Avatar</Text>
+        )}
         <Text style={styles.username}>{post.user.username}</Text>
       </View>
 
