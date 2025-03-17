@@ -2,6 +2,7 @@ import { View, Text, Image, StyleSheet, TextInput, Pressable } from "react-nativ
 import React, { useEffect, useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 import Button from "@/components/Button";
+import { uploadImage } from "@/components/lib/cloudinary";
 
 export default function AddPost() {
   const [image, setImage] = useState<string | null>(null);
@@ -26,6 +27,15 @@ export default function AddPost() {
     }
   };
 
+  const createPost = async () => {
+    if (!image) {
+      return;
+    }
+
+    const response = await uploadImage(image);
+    //save post in database
+    console.log("image id: ", response?.public_id)
+  }
   return (
     <View style={styles.container}>
       {image ? (
@@ -52,7 +62,7 @@ export default function AddPost() {
       />
 
       {/* Share Button */}
-      <Button name="Share" />
+      <Button name="Share" onPress={createPost} />
     </View>
   );
 }
