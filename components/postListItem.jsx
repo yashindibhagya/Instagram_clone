@@ -12,15 +12,13 @@ import { cld } from "./lib/cloudinary";
 export default function PostListItem({ post }) {
   const { width } = useWindowDimensions();
 
-  // Generate Cloudinary image URL
-  const myImage = cld.image(post.image); // Ensure 'post.image' is a Cloudinary public ID.
-  myImage.resize(thumbnail().width(width).height(width));
+  // Check if post.image_url exists; if not, use Cloudinary
+  const imageUrl = post.image_url
+    ? post.image_url
+    : cld.image(post.image).resize(thumbnail().width(width).height(width)).toURL();
 
-  // Get final Cloudinary URL and prevent caching issues
-  const imageUrl = `${myImage.toURL()}?cache=${new Date().getTime()}`;
-
-  // Debug: Check if URL is correct
-  console.log("Generated Image URL:", imageUrl);
+  // Debug: Check the final image URL
+  //console.log("Final Image URL:", imageUrl);
 
   return (
     <View style={styles.container}>
@@ -31,7 +29,11 @@ export default function PostListItem({ post }) {
       </View>
 
       {/* Post Image */}
-      <Image source={{ uri: imageUrl }} style={styles.image} />
+      {imageUrl ? (
+        <Image source={{ uri: imageUrl }} style={styles.image} />
+      ) : (
+        <Text style={{ textAlign: "center", color: "red" }}>Image not available</Text>
+      )}
 
       {/* Icons */}
       <View style={styles.iconContainer}>
