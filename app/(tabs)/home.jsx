@@ -1,12 +1,14 @@
 //cloudinary - yashindib@gmail.com
-import { View, Text, Image, StyleSheet, FlatList } from "react-native";
-import React from "react";
+import { View, Text, Image, StyleSheet, FlatList, Alert } from "react-native";
+import React, { useEffect, useState } from "react";
 import posts from "../../assets/data/posts.json";
 import PostListItem from "@/components/postListItem";
+import { supabase } from "@/components/lib/supabase";
 
 const post1 = posts[0];
 export default function Home() {
-  //console.log(post1);
+  const [posts, setPosts] = useState([]);
+
 
   return (
     <FlatList
